@@ -1,0 +1,97 @@
+"3.5 (created: 2012/08/04 00:41:20)
+
+source! "C:\\Documents and Settings\\hashimoto\\_vimperatorrc.local"
+
+" options -------------------------------------------------------
+
+" hintを英字ベースにする
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+"タイトルを Vimperator から Firefox に変更
+set titlestring=Mozilla Firefox
+"補完設定
+set wildoptions=auto
+set complete=shl
+"検索エンジン設定
+"set defsearch=g
+"set suggestengines=g
+"音を鳴らさない
+set visualbell
+highlight Bell display:none
+"リンクのURIをステータスラインに表示
+"set showstatuslinks=1
+"ページのアクセスキーを無効化
+set! ui.key.generalAccessKey=0
+"検索欄などにフォーカスするのを防ぐ
+set focuscontent
+
+" style option -------------------------------------------------------
+"IME自動OFF
+style -name commandline-ime chrome://* #liberator-commandline-command input {ime-mode: inactive;}
+
+" color option -------------------------------------------------------
+"colorscheme sweets_snaka
+
+" keymaps -------------------------------------------------------
+"上下
+"noremap j 5j
+"noremap k 5k
+"nnoremap j <C-d>
+"nnoremap k <C-u>
+
+"タブ移動
+nnoremap h <C-p>
+nnoremap l <C-n>
+
+"行先頭・末尾へ
+inoremap <C-h> ^
+vnoremap <C-h> ^
+inoremap <C-l> $
+vnoremap <C-l> $
+
+" 補完リストの選択をC-n,C-pで
+cnoremap <C-n> <TAB>
+cnoremap <C-p> <S-TAB>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+nnoremap <C-n> <Down>
+nnoremap <C-p> <Up>
+
+"検索関連はs(search)
+"google検索
+nnoremap s :tabopen<Space>google<Space>
+
+".vimperatorrcを再読み込み(Windowsなので.vimperatorrcではなく_vimperatorrc)
+nnoremap <silent> ,r :mapc<CR>:cmapc<CR>:imapc<CR>:so ~/_vimperatorrc<CR>
+
+
+" plugins -----------------------------------------------------
+"smooziee.js
+let g:smooziee_scroll_amount="200"
+let g:smooziee_scroll_interval="10"
+
+"caret_hint.js
+"Hint モードのキー
+"選択した要素の先頭にキャレットを移動する (;cと打ち込めばOK)
+let g:caret_hint_key = 'c'
+"Hint モードのキー
+"選択した要素の後尾にキャレットを移動する (;Cと打ち込めばOK)
+let g:caret_hint_tail_key = 'C'
+"Hint モードのキー
+"選択した要素の先頭にキャレットを移動し、要素を選択する
+let g:caret_hint_select_key = ''
+"Hint モードのキー
+"選択した要素の後尾にキャレットを移動し、要素を選択する
+let g:caret_hint_select_tail_key = ''
+"VISUAL モード用のキーマッピング
+"キャレットの位置を交換する(先頭 <=> 後尾) 
+let g:caret_hint_swap_key = 'c'
+"これらの値に空文字列を与えれば、マッピングやモードは有効にされません。
+
+"マッピングはInsertモードのiにひっかけて<C-i>に設定。ただしInsertモード中の<C-i>はエディタ起動であることに注意。
+nnoremap <C-i> ;c
+
+"       -------------------------------------------------------
+" 読み込みおわったらメッセージ
+echo "vimperator: Welcome back."
+" vim: set ft=vimperator:
+
