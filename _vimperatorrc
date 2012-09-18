@@ -4,10 +4,14 @@ source! "C:\\Documents and Settings\\hashimoto\\_vimperatorrc.local"
 
 " options -------------------------------------------------------
 
-" hintを英字ベースにする
-set hintchars=hjklasdfgyuiopqwertnmzxcvb
 "タイトルを Vimperator から Firefox に変更
 set titlestring=Mozilla Firefox
+"メニューバー等の表示設定
+"set gui=addons,nobookmarks,menu,navigation,tabs
+set gui=set gui=addons,nobookmarks,nomenu,nonavigation,tabs
+
+" hintを英字ベースにする
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
 "補完設定
 set wildoptions=auto
 set complete=shl
@@ -23,6 +27,14 @@ highlight Bell display:none
 set! ui.key.generalAccessKey=0
 "検索欄などにフォーカスするのを防ぐ
 set focuscontent
+
+"ポップアップの設定 参考：http://coderepos.org/share/browser/dotfiles/vimperator/snaka-vimperatorrc 
+"Google Readerで問題発生するので設定が必要
+set! dom.popup_maximum=1000
+set popups=2
+
+"キャレットブラウズモードでキャレットの位置を見失わないように太めにする
+set! ui.caretWidth=2
 
 " style option -------------------------------------------------------
 "IME自動OFF
@@ -65,10 +77,38 @@ nnoremap <silent> ,r :mapc<CR>:cmapc<CR>:imapc<CR>:so ~/_vimperatorrc<CR>
 
 
 " plugins -----------------------------------------------------
+"======================================================================
 "smooziee.js
 let g:smooziee_scroll_amount="200"
 let g:smooziee_scroll_interval="10"
 
+"======================================================================
+"migrate_statusbar.js 
+"上からブックマーク星ボタン、フィードボタン、ファビコンをステータスラインに移動 
+"javascript <<EOM
+"liberator.globalVariables.migrate_elements = [
+"    {
+"        // star button of awesome bar
+"        id:    'star-button',
+"        dest:  'security-button',
+"        after: true,
+"    },
+"    {
+"        // icon that show the existence of RSS and Atom on current page
+"        id:    'feed-button',
+"        dest:  'security-button',
+"        after: true,
+"    },
+"    {
+"        // favicon of awesome bar
+"        id:    'page-proxy-stack',
+"        dest:  'liberator-statusline',
+"        after: false,
+"    },
+"];
+"EOM
+
+"======================================================================
 "caret_hint.js
 "Hint モードのキー
 "選択した要素の先頭にキャレットを移動する (;cと打ち込めばOK)
@@ -89,6 +129,31 @@ let g:caret_hint_swap_key = 'c'
 
 "マッピングはInsertモードのiにひっかけて<C-i>に設定。ただしInsertモード中の<C-i>はエディタ起動であることに注意。
 nnoremap <C-i> ;c
+
+"======================================================================
+"feedSomeKeys_3.js
+
+"======================================================================
+"copy.js
+"copy関係はyを割り当て。
+javascript <<EOM
+liberator.globalVariables.copy_templates = [
+  { label: 'titleAndURL',    value: '%TITLE%\n%URL%' },                                                                                
+  { label: 'title',          value: '%TITLE%', map: ',y' },                                                                            
+  { label: 'anchor',         value: '<a href="%URL%">%TITLE%</a>' },                                                                   
+  { label: 'selanchor',      value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },                                                     
+  { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },                                
+  { label: 'ASIN',   value: 'copy ASIN code from Amazon', custom: function(){return content.document.getElementById('ASIN').value;} }, 
+];
+EOM
+"a:anchor p:plaintext t:title s:select q:blockquote
+"何も設定しなければyyでurlが取得できた
+"nnremap yy y
+nnoremap ya :copy anchor<CR>
+nnoremap yp :copy titleAndURL<CR>
+nnoremap yt :copy title<CR>
+nnoremap ys :copy selanchor<CR>
+nnoremap yq :copy htmlblockquote<CR>
 
 "       -------------------------------------------------------
 " 読み込みおわったらメッセージ
