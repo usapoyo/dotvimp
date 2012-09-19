@@ -79,8 +79,8 @@ nnoremap <silent> ,r :mapc<CR>:cmapc<CR>:imapc<CR>:so ~/_vimperatorrc<CR>
 " plugins -----------------------------------------------------
 "======================================================================
 "smooziee.js
-let g:smooziee_scroll_amount="200"
-let g:smooziee_scroll_interval="10"
+let g:smooziee_scroll_amount="250"
+let g:smooziee_scroll_interval="20"
 
 "======================================================================
 "migrate_statusbar.js 
@@ -132,6 +132,12 @@ nnoremap <C-i> ;c
 
 "======================================================================
 "feedSomeKeys_3.js
+command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+
+" Google Reader
+lazy fmaps -u='www\.google\.(co\.jp|com)/reader' -events=vkeypress j k n p m s v A r S N P X O gh ga gs gt gu u / ? J K
+" Google Reader Full Feed
+lazy fmaps -u='www\.google\.(co\.jp|com)/reader' -events=vkeyup z
 
 "======================================================================
 "copy.js
