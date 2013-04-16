@@ -1,6 +1,7 @@
 "3.5 (created: 2012/08/04 00:41:20)
 
-source! "C:\\Documents and Settings\\hashimoto\\_vimperatorrc.local"
+"source! "C:\\Documents and Settings\\hashimoto\\_vimperatorrc.local"
+source! /Users/usapoyo/.vimperatorrc.local
 
 " options -------------------------------------------------------
 
@@ -28,7 +29,7 @@ set! ui.key.generalAccessKey=0
 "検索欄などにフォーカスするのを防ぐ
 set focuscontent
 
-"ポップアップの設定 参考：http://coderepos.org/share/browser/dotfiles/vimperator/snaka-vimperatorrc 
+"ポップアップの設定 参考：http://coderepos.org/share/browser/dotfiles/vimperator/snaka-vimperatorrc
 "Google Readerで問題発生するので設定が必要
 set! dom.popup_maximum=1000
 set popups=2
@@ -73,7 +74,8 @@ nnoremap <C-p> <Up>
 nnoremap s :tabopen<Space>google<Space>
 
 ".vimperatorrcを再読み込み(Windowsなので.vimperatorrcではなく_vimperatorrc)
-nnoremap <silent> ,r :mapc<CR>:cmapc<CR>:imapc<CR>:so ~/_vimperatorrc<CR>
+"nnoremap <silent> ,r :mapc<CR>:cmapc<CR>:imapc<CR>:so ~/_vimperatorrc<CR>
+nnoremap <silent> ,r :mapc<CR>:cmapc<CR>:imapc<CR>:so ~/.vimperatorrc<CR>
 
 
 " plugins -----------------------------------------------------
@@ -83,8 +85,8 @@ let g:smooziee_scroll_amount="250"
 let g:smooziee_scroll_interval="20"
 
 "======================================================================
-"migrate_statusbar.js 
-"上からブックマーク星ボタン、フィードボタン、ファビコンをステータスラインに移動 
+"migrate_statusbar.js
+"上からブックマーク星ボタン、フィードボタン、ファビコンをステータスラインに移動
 "javascript <<EOM
 "liberator.globalVariables.migrate_elements = [
 "    {
@@ -123,7 +125,7 @@ let g:caret_hint_select_key = ''
 "選択した要素の後尾にキャレットを移動し、要素を選択する
 let g:caret_hint_select_tail_key = ''
 "VISUAL モード用のキーマッピング
-"キャレットの位置を交換する(先頭 <=> 後尾) 
+"キャレットの位置を交換する(先頭 <=> 後尾)
 let g:caret_hint_swap_key = 'c'
 "これらの値に空文字列を与えれば、マッピングやモードは有効にされません。
 
@@ -135,7 +137,7 @@ nnoremap <C-i> ;c
 command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 
 " Google Reader
-lazy fmaps -u='www\.google\.(co\.jp|com)/reader' -events=vkeypress j k n p m s v A r S N P X O gh ga gs gt gu u / ? J K
+lazy fmaps -u='www\.google\.(co\.jp|com)/reader' -events=vkeypress j k n p m v A r S N P X O gh ga gs gt gu u / ? J K
 " Google Reader Full Feed
 lazy fmaps -u='www\.google\.(co\.jp|com)/reader' -events=vkeyup z
 
@@ -144,12 +146,12 @@ lazy fmaps -u='www\.google\.(co\.jp|com)/reader' -events=vkeyup z
 "copy関係はyを割り当て。
 javascript <<EOM
 liberator.globalVariables.copy_templates = [
-  { label: 'titleAndURL',    value: '%TITLE%\n%URL%' },                                                                                
-  { label: 'title',          value: '%TITLE%', map: ',y' },                                                                            
-  { label: 'anchor',         value: '<a href="%URL%">%TITLE%</a>' },                                                                   
-  { label: 'selanchor',      value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },                                                     
-  { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },                                
-  { label: 'ASIN',   value: 'copy ASIN code from Amazon', custom: function(){return content.document.getElementById('ASIN').value;} }, 
+  { label: 'titleAndURL',    value: '%TITLE%\n%URL%' },
+  { label: 'title',          value: '%TITLE%', map: ',y' },
+  { label: 'anchor',         value: '<a href="%URL%">%TITLE%</a>' },
+  { label: 'selanchor',      value: '<a href="%URL%" title="%TITLE%">%SEL%</a>' },
+  { label: 'htmlblockquote', value: '<blockquote cite="%URL%" title="%TITLE%">%HTMLSEL%</blockquote>' },
+  { label: 'ASIN',   value: 'copy ASIN code from Amazon', custom: function(){return content.document.getElementById('ASIN').value;} },
 ];
 EOM
 "a:anchor p:plaintext t:title s:select q:blockquote
