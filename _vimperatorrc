@@ -136,10 +136,11 @@ nnoremap <C-i> ;c
 "feedSomeKeys_3.js
 command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 
-" Google Reader
-lazy fmaps -u='www\.google\.(co\.jp|com)/reader' -events=vkeypress j k n p m v A r S N P X O gh ga gs gt gu u / ? J K
-" Google Reader Full Feed
-lazy fmaps -u='www\.google\.(co\.jp|com)/reader' -events=vkeyup z
+"feedly
+lazy fmaps -u='feedly\.com' j k g m a e t c d p n b n p o v V S D A e t d c / r ? 1 2 3 4 5 6 7 8 9 <Enter> <Esc>
+
+"toodledo
+lazy fmaps -u='https://www.toodledo.com/' -events=vkeydown f n z w r ? m o c d g p j k e
 
 "======================================================================
 "copy.js
